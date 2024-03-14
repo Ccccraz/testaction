@@ -1,4 +1,4 @@
-name: release
+name: artifact
 
 on:
   workflow_dispatch:
@@ -15,12 +15,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: compress
-        if: startsWith(github.ref, 'refs/tags/')    
         run: |
           7z a -tzip a.zip ./src/**
       
-      - name: release
-        if: startsWith(github.ref, 'refs/tags/')    
-        uses: softprops/action-gh-release@v2
+      - name: upload
+        uses: actions/upload-artifact@v4
         with:
-          files: a.zip
+          name: release
+          path: a.zip
