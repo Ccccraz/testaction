@@ -3,8 +3,6 @@ name: Multi
 on:
   workflow_dispatch:
 
-  push:
-
 permissions:
   contents: write
 
